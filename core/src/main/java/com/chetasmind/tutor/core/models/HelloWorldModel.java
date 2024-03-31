@@ -15,36 +15,67 @@
  */
 package com.chetasmind.tutor.core.models;
 
-import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 
+
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.factory.ModelFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.day.cq.wcm.api.designer.Style;
+import com.chetasmind.tutor.core.service.TestService;
 
 import java.util.Optional;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = {Resource.class,SlingHttpServletRequest.class},
+defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HelloWorldModel {
-
-    @ValueMapValue(name=PROPERTY_RESOURCE_TYPE, injectionStrategy=InjectionStrategy.OPTIONAL)
-    @Default(values="No resourceType")
-    protected String resourceType;
+ 
 
     @SlingObject
     private Resource currentResource;
+    
     @SlingObject
     private ResourceResolver resourceResolver;
-
+    
+    @ValueMapValue
+    @Named("myText")
+    private String textVal;
+    
+    @OSGiService
+    private TestService testService; // This is custom service class
+    
+    @OSGiService
+    protected ModelFactory modelFactory;
+    
+    @SlingObject
+    private SlingHttpServletRequest slingHttpServletRequest;
+    
+    @ScriptVariable
+    private Page currentPage;   
+    
+    @ScriptVariable
+    private PageManager pageManager;
+    
+    @ScriptVariable
+    private Style currentStyle;
+    
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    
+    
     private String message;
 
     @PostConstruct
@@ -55,8 +86,10 @@ public class HelloWorldModel {
                 .map(Page::getPath).orElse("");
 
         message = "Hello World!\n"
-            + "Resource type is: " + resourceType + "\n"
+        	+ "textVal is:  " + textVal
             + "Current page is:  " + currentPagePath + "\n";
+        
+        logger.debug("currentPage path="+currentPage.getPath());
     }
 
     public String getMessage() {
