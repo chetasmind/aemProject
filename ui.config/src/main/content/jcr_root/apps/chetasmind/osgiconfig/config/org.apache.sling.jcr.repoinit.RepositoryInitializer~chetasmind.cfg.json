@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/chetasmind",
+        "create path (nt:unstructured) /content/dam/chetasmind/jcr:content",
+        "set properties on /content/dam/chetasmind/jcr:content\n  set cq:conf{String} to /conf/chetasmind\n  set jcr:title{String} to \"ChetasMind\"\nend"
+    ]
+}

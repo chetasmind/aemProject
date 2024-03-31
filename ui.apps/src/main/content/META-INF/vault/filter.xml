@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/chetasmind/clientlibs"/>
+    <filter root="/apps/chetasmind/components"/>
+    <filter root="/apps/chetasmind/i18n"/>
+</workspaceFilter>
