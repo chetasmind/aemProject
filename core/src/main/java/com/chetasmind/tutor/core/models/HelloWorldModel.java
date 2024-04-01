@@ -89,7 +89,7 @@ public class HelloWorldModel {
         	+ "textVal is:  " + textVal
             + "Current page is:  " + currentPagePath + "\n";
         
-        logger.debug("currentPage path="+currentPage.getPath());
+        logger.debug("currentPage path is ="+currentPage.getPath());
     }
 
     public String getMessage() {

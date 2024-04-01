@@ -1,0 +1,59 @@
+
+Page Title: ${currentPage.title}  <br/>
+Page path: ${currentPage.Path}  <br/>
+Page Depth: ${currentPage.Depth}  <br/>
+
+${pageProperties['jcr:title']} <br/>
+${pageProperties['sling:resourceType']} <br/>
+${pageProperties['navTitle']} <br/>
+
+
+<!--
+<ul data-sly-list="${currentPage.listChildren}">
+    <li>${item.title}</li>
+</ul>  
+
+testing 123 .................
+<ul data-sly-list="${currentPage.listChildren}">
+    <li>${item.navigationTitle}</li>
+</ul>
+
+data-sly-repeat example:
+<ul data-sly-repeat="${ currentPage.listChildren }">
+    <li>  ${item.name} </li>
+</ul>
+-->
+
+<!--
+<div data-sly-list.value="${currentPage.listChildren}">
+    <div>index:${valueList.index} value: ${value.title}<div>
+</div>
+
+
+<div data-sly-list="${currentPage.listChildren}">
+    <div>index:${itemList.index} value: ${item.title}<div>
+</div>
+
+-->
+display list
+<sly data-sly-use.myModel="com.chetasmind.tutor.core.models.ListMapExample"></sly>
+
+
+<sly data-sly-test="${myModel.sportsList}">
+    <div data-sly-list.value="${myModel.sportsList}">      
+            ${value}
+    </div>
+</sly>
+
+<!--
+<sly data-sly-test="${myModel.celebrityMap}">
+    <sly data-sly-list.key="${myModel.celebrityMap}">
+        <p>key: ${key}   </p>
+        <p>value: ${myModel.celebrityMap[key]}</p>
+    </sly>
+</sly>
+-->
+
+<div data-sly-use.booksTemplate="myTemplate.html">
+   <sly data-sly-call="${booksTemplate.authorBooks @books=myModel}" />
+</div>
