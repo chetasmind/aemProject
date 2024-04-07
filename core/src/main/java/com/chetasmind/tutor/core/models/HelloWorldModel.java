@@ -23,6 +23,7 @@ import javax.inject.Named;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -36,6 +37,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.designer.Style;
+import com.chetasmind.tutor.core.config.MyCAConfig;
 import com.chetasmind.tutor.core.service.TestService;
 
 import java.util.Optional;
@@ -90,6 +92,20 @@ public class HelloWorldModel {
             + "Current page is:  " + currentPagePath + "\n";
         
         logger.debug("currentPage path is ="+currentPage.getPath());
+        
+        
+        // Testing the Context Aware Configuration
+        
+        Resource resource = resourceResolver.getResource(currentPagePath);
+        if(resource !=null) {
+	        ConfigurationBuilder configBuilder = resource.adaptTo(ConfigurationBuilder.class);
+	        if(configBuilder !=null) {
+	        	MyCAConfig caConfig = configBuilder.as(MyCAConfig.class);
+	        	logger.debug(" Content Type: {}", caConfig.contentType());
+	        	logger.debug(" Site Name: {}", caConfig.siteName());
+	     
+	        }
+        }    
     }
 
     public String getMessage() {
