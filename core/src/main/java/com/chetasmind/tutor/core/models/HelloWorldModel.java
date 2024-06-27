@@ -37,7 +37,9 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.designer.Style;
+import com.chetasmind.tutor.core.config.FurnitureConfig;
 import com.chetasmind.tutor.core.config.MyCAConfig;
+import com.chetasmind.tutor.core.config.VaccineConfig;
 import com.chetasmind.tutor.core.service.TestService;
 
 import java.util.Optional;
@@ -77,6 +79,11 @@ public class HelloWorldModel {
     
     private final Logger logger = LoggerFactory.getLogger(getClass());
     
+    @OSGiService
+    private VaccineConfig vaccineConfig;
+    
+    @OSGiService
+    private FurnitureConfig furnitureConfig;
     
     private String message;
 
@@ -93,8 +100,23 @@ public class HelloWorldModel {
         
         logger.debug("currentPage path is ="+currentPage.getPath());
         
+        // Testing the Run mode Configuration
+        logger.debug("---------- Testing the Run mode Configuration ------");
+        
+        logger.debug("Company ID: {}",furnitureConfig.getCompanyID());
+        logger.debug("Company Name: {}",furnitureConfig.getCompanyName());
+        logger.debug("Furniture ID: {}",furnitureConfig.getFurnitureID());
+        
+        // Testing the Factory Run mode Configuration
+        logger.debug("---------- Testing the Factory Run mode Configuration ------");
+        
+        VaccineConfig vaccineObj = vaccineConfig.getConfig("CoVax123");
+        logger.debug("Company Name: {}",vaccineObj.getCompanyName());
+        logger.debug("Vaccine Name: {}",vaccineObj.getVaccineName());
         
         // Testing the Context Aware Configuration
+        
+        logger.debug("---------- Testing the Context Aware Configuration ------");
         
         Resource resource = resourceResolver.getResource(currentPagePath);
         if(resource !=null) {
