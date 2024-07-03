@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2024-06-29T19:19:32.538+05:30"
+        cq:lastModifiedBy="admin"
+        jcr:lastModified="{Date}2024-06-29T19:19:32.478+05:30"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="tech talk restful data source"
+        sling:resourceType="fd/fdm/gui/components/admin/fdmcloudservice/rest"
+        authenticationType="Basic Authentication"
+        dataSourceType="REST"
+        filename="rest-service.yaml"
+        grant_type="refresh_token"
+        location="header"
+        name="tech-talk-restful-data-source"
+        password="\{9f0e25bbc8b132b916a33331e3bbeb5f3fc091d65c5d39fa22b1b918c27dc817}"
+        selectAuthentication="Basic Authentication"
+        selectHeader="Authorization Bearer"
+        serviceEndPoint="http://localhost:4502"
+        swaggerSource="swaggerFile"
+        userName="admin">
+        <swaggerFile/>
+    </jcr:content>
+</jcr:root>
