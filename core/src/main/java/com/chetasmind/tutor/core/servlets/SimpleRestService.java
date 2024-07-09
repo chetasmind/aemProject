@@ -58,6 +58,13 @@ public class SimpleRestService extends SlingAllMethodsServlet {
 		String dob = request.getParameter("dob");
 		String gender = request.getParameter("gender");
 		String grade = request.getParameter("grade");
+		
+		LOGGER.debug("name="+name);
+		LOGGER.debug("email="+email);
+		LOGGER.debug("dob="+dob);
+		LOGGER.debug("gender="+gender);
+		LOGGER.debug("grade="+grade);
+		
 
 	}
 
