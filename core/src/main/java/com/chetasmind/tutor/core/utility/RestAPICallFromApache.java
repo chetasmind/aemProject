@@ -31,6 +31,7 @@ public class RestAPICallFromApache {
 	private static void sendGET()  {
 		
 		try {
+			// https://www.baeldung.com/apache-httpclient-vs-closeablehttpclient
 			log.debug("222222");
 			
 			CloseableHttpClient httpClient = HttpClients.createDefault();

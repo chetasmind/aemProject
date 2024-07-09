@@ -24,7 +24,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.day.cq.wcm.api.Page;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import com.chetasmind.tutor.core.testcontext.AppAemContext;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,7 +34,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(AemContextExtension.class)
 class HelloWorldModelTest {
 
-    private final AemContext context = AppAemContext.newAemContext();
+	private final AemContext context=new AemContext();
+	
+    //private final AemContext context = AppAemContext.newAemContext();
 
     private HelloWorldModel hello;
 
@@ -51,7 +52,9 @@ class HelloWorldModelTest {
             "sling:resourceType", "chetasmind/components/helloworld");
 
         // create sling model
+        System.out.println(1);
         hello = resource.adaptTo(HelloWorldModel.class);
+        System.out.println(2);
     }
 
     @Test
