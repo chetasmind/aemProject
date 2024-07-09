@@ -74,7 +74,7 @@ public class AuthorImpl implements Author{
 
 
     @ValueMapValue
-    private List<String> books;
+    private List<String> books; 
 
 
     @Override
